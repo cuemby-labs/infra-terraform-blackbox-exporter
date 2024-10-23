@@ -8,9 +8,11 @@ Terraform module which deploys BlackBox Exporter on any kubernetes cluster.
 module "blackbox_exporter" {
   source = "./modules/blackbox-exporter"
 
-  namespace_name        = "cert-manager" # Namespace where BlackBox Exporter will be installed  
-  helm_release_name     = "cert-manager" # Name for the BlackBox Exporter Helm release
-  helm_release_version  = "1.15.3" # Version of the BlackBox Exporter Helm chart
+  namespace_name        = "prometheus-system"            # Namespace where BlackBox Exporter will be installed  
+  helm_release_name     = "prometheus-blackbox-exporter" # Name for the BlackBox Exporter Helm release
+  helm_release_version  = "8.17.0"                       # Version of the BlackBox Exporter Helm chart
+  service_monitor       = true                           # Enable or disable serviceMonitor
+  pod_monitoring        = true                           # Enable or disable podMonitoring
 }
 ```
 
