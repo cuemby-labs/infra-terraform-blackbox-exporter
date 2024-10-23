@@ -1,11 +1,17 @@
-# Awesome Walrus Template
+# BlackBox Exporter Template
 
-Start here to create an awesome Walrus template.
+Terraform module which deploys BlackBox Exporter on any kubernetes cluster.
 
 ## Usage
 
 ```hcl
+module "blackbox_exporter" {
+  source = "./modules/blackbox-exporter"
 
+  namespace_name        = "cert-manager" # Namespace where BlackBox Exporter will be installed  
+  helm_release_name     = "cert-manager" # Name for the BlackBox Exporter Helm release
+  helm_release_version  = "1.15.3" # Version of the BlackBox Exporter Helm chart
+}
 ```
 
 ## Examples
@@ -18,31 +24,39 @@ Start here to create an awesome Walrus template.
 Please read our [contributing guide](./docs/CONTRIBUTING.md) if you're interested in contributing to Walrus template.
 
 <!-- BEGIN_TF_DOCS -->
+
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
+| <a name="requirement_helm"></a> [helm](#requirement\_helm) | >= 2.11.0 |
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_helm"></a> [helm](#provider\_helm) | >= 2.11.0 |
 
 ## Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_submodule"></a> [submodule](#module\_submodule) | ./modules/submodule | n/a |
+No modules.
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [helm_release.example](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_context"></a> [context](#input\_context) | Receive contextual information. When Walrus deploys, Walrus will inject specific contextual information into this field.<br><br>Examples:<pre>context:<br>  project:<br>    name: string<br>    id: string<br>  environment:<br>    name: string<br>    id: string<br>  resource:<br>    name: string<br>    id: string</pre> | `map(any)` | `{}` | no |
+| <a name="input_namespace_name"></a> [namespace_name](#input_namespace_name) | Namespace where BlackBox Exporter will be installed. | `string` | `"prometheus-systemn"` | no |
+| <a name="input_helm_release_name"></a> [helm_release_name](#input_helm_release_name) | Name for the BlackBox Exporter Helm release. | `string` | `"prometheus-blackbox-exporter"` | no |
+| <a name="input_helm_release_version"></a> [helm_release_version](#input_helm_release_version) | Version of the BlackBox Exporter Helm chart. | `string` | `"8.17.0"` | no |
+| <a name="input_service_monitor"></a> [service_monitor](#input_service_monitor) | Enable or disable serviceMonitor. | `boolean` | `"true"` | no |
+| <a name="input_pod_monitoring"></a> [pod_monitoring](#input_pod_monitoring) | Enable or disable podMonitoring. | `boolean` | `"true"` | no |
 
 ## Outputs
 
