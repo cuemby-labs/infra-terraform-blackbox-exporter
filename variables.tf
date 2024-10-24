@@ -1,5 +1,5 @@
 #
-# Cert-Manager
+# BlackBox Exporter
 #
 
 variable "namespace_name" {
