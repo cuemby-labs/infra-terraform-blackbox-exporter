@@ -13,6 +13,17 @@ module "blackbox_exporter" {
   helm_release_version  = "8.17.0"                       # Version of the BlackBox Exporter Helm chart
   service_monitor       = true                           # Enable or disable serviceMonitor
   pod_monitoring        = true                           # Enable or disable podMonitoring
+
+  resources = {
+    limits = {
+      cpu    = "300m"
+      memory = "300Mi"
+    }
+    requests = {
+      cpu    = "50m"
+      memory = "50Mi"
+    }
+  }
 }
 ```
 
@@ -59,6 +70,8 @@ No modules.
 | <a name="input_helm_release_version"></a> [helm_release_version](#input_helm_release_version) | Version of the BlackBox Exporter Helm chart. | `string` | `"8.17.0"` | no |
 | <a name="input_service_monitor"></a> [service_monitor](#input_service_monitor) | Enable or disable serviceMonitor. | `boolean` | `"true"` | no |
 | <a name="input_pod_monitoring"></a> [pod_monitoring](#input_pod_monitoring) | Enable or disable podMonitoring. | `boolean` | `"true"` | no |
+| <a name="input_resources"></a> [resources](#input_resources) | Resource limits and requests for the helm chart pods. | `map(object(string))` | `"See example"` | no |
+| <a name="input_context"></a> [context](#input\_context) | Receive contextual information. When Walrus deploys, Walrus will inject specific contextual information into this field.<br><br>Examples:<pre>context:<br>  project:<br>    name: string<br>    id: string<br>  environment:<br>    name: string<br>    id: string<br>  resource:<br>    name: string<br>    id: string</pre> | `map(any)` | `{}` | no |
 
 ## Outputs
 
