@@ -32,6 +32,22 @@ variable "pod_monitoring" {
   default     = true
 }
 
+variable "resources" {
+  description = "Resource limits and requests for the BlackBox Exporter Helm release."
+  type        = map(map(string))
+
+  default = {
+    limits = {
+      cpu    = "300m"
+      memory = "300Mi"
+    }
+    requests = {
+      cpu    = "50m"
+      memory = "50Mi"
+    }
+  }
+}
+
 #
 # Walrus Contextual Fields
 #

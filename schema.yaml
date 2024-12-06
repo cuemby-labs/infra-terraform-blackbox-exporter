@@ -30,22 +30,44 @@ components:
           x-walrus-ui:
             group: Basic
             order: 3
-        service_monitor_enabled:
-          title: Service Monitor Enabled
+        service_monitor:
+          title: Service Monitor
           type: boolean
           description: Enable or disable serviceMonitor.
           default: true
           x-walrus-ui:
             group: Basic
             order: 4
-        pod_monitoring_enabled:
-          title: Pod Monitoring Enabled
+        pod_monitoring:
+          title: Pod Monitoring
           type: boolean
           description: Enable or disable podMonitoring.
           default: true
           x-walrus-ui:
             group: Basic
             order: 5
+        resources:
+          title: Resources
+          type: object
+          description: Resource limits and requests for the BlackBox Exporter Helm
+            release.
+          default:
+            limits:
+              cpu: 300m
+              memory: 300Mi
+            requests:
+              cpu: 50m
+              memory: 50Mi
+          additionalProperties:
+            additionalProperties:
+              type: string
+            type: object
+            x-walrus-ui:
+              colSpan: 12
+          x-walrus-ui:
+            colSpan: 12
+            group: Basic
+            order: 6
       x-walrus-ui:
         groupOrder:
         - Basic
